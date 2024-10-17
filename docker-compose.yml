@@ -1,0 +1,63 @@
+services:
+  postgres:
+    container_name: ms_pg_sql
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: vvs
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5436:5432
+    networks:
+      microservices-net:
+    restart: unless-stopped
+  pgadmin:
+    container_name: ms_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pdadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/postgresql/data
+    ports:
+      - 5051:80
+    networks:
+      - microservices-net
+    restart: unless-stopped
+  mongodb:
+    container_name: ms_mongo_db
+    image: mongo
+    ports:
+      - 27018:27017
+    volumes:
+      - mongo:/data
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: vvs
+      MONGO_INITDB_ROOT_PASSWORD: vvs
+  mongo-express:
+    image: mongo-express
+    container_name: ms_mongo_express
+    restart: unless-stopped
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: vvs
+      ME_CONFIG_MONGODB_ADMINPASSWORD: vvs
+      ME_CONFIG_MONGODB_SERVER: mongodb
+  mail-dev:
+    container_name: ms_mail_dev
+    image: maildev/maildev
+    ports:
+      - 1080:1080  # for the ui
+      - 1025:1025  # for the smtp
+
+networks:
+  microservices-net:
+    driver: bridge
+volumes:
+  postgres:
+  pgadmin:
+  mongo:
