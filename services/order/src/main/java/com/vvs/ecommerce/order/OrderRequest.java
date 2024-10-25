@@ -1,6 +1,6 @@
-package com.vvs.ecommerce.order.order;
+package com.vvs.ecommerce.order;
 
-import com.vvs.ecommerce.order.product.PurchaseRequest;
+import com.vvs.ecommerce.product.PurchaseRequest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

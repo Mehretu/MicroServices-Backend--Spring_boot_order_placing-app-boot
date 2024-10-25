@@ -1,4 +1,4 @@
-package com.vvs.ecommerce.order.order;
+package com.vvs.ecommerce.order;
 
 public enum PaymentMethod {
 

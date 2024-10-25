@@ -1,4 +1,12 @@
 package com.vvs.ecommerce.product;
 
-public record PurchaseResponse() {
+import java.math.BigDecimal;
+
+public record PurchaseResponse(
+        Integer productId,
+        String name,
+        String description,
+        BigDecimal price,
+        double quantity
+) {
 }

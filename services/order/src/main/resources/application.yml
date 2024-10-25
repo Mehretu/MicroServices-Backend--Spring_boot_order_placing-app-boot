@@ -1,20 +1,8 @@
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
   application:
     name: order-service
-  datasource:
-    url: jdbc:postgresql://localhost:5436/order
-    username: postgres
-    password: vvs
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-server:
-  port: 8070
-application:
-  config:
-    customer-url: http://localhost:
+
 
 
