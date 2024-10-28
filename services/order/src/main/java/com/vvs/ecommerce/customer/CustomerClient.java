@@ -11,6 +11,6 @@ import java.util.Optional;
         url = "${application.config.customer-url}"
 )
 public interface CustomerClient {
-    @GetMapping("/customer-id")
+    @GetMapping("/{customer-id}")
     Optional<CustomerResponse> findCustomerById(@RequestParam("customer-id") String id);
 }

@@ -3,8 +3,9 @@ package com.vvs.ecommerce.customer;
 import com.vvs.ecommerce.exception.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 
@@ -15,11 +16,11 @@ import static java.lang.String.format;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CustomerService {
 
     private final CustomerRepository repository;
     private final CustomerMapper mapper;
-    private final CustomerRepository customerRepository;
 
     public String createCustomer(@Valid CustomerRequest request) {
         var customer = repository.save(mapper.toCustomer(request));
@@ -27,9 +28,10 @@ public class CustomerService {
     }
 
     public void updateCustomer(@Valid CustomerRequest request) {
+
         var customer = repository.findById(request.id())
                 .orElseThrow(() -> new CustomerNotFoundException(
-                        format("Cannot update customer :: No such customer with id : %s", request.id())
+                        String.format("Cannot update customer :: No such customer with id : %s", request.id())
                 ));
         mergeCustomer(customer, request);
         repository.save(customer);
@@ -51,25 +53,24 @@ public class CustomerService {
     }
 
     public List<CustomerResponse> findAllCustomers() {
-        return customerRepository.findAll()
+        return repository.findAll()
                 .stream()
                 .map(mapper::fromCustomer)
                 .collect(Collectors.toList());
     }
 
     public Boolean existsById(String customerId) {
-        return customerRepository.findById(customerId).isPresent();
+        return repository.findById(customerId).isPresent();
     }
 
-    public CustomerResponse findById(String customerId) {
-        return customerRepository.findById(customerId)
+    public CustomerResponse findById(String id) {
+        return this.repository.findById(id)
                 .map(mapper::fromCustomer)
-                .orElseThrow(() -> new CustomerNotFoundException(format("No customer found with Provided id : %s", customerId)));
-
+                .orElseThrow(() -> new CustomerNotFoundException(String.format("No customer found with the provided ID: %s", id)));
     }
 
 
     public void deleteById(String customerId) {
-        customerRepository.deleteById(customerId);
+        repository.deleteById(customerId);
     }
 }

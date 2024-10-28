@@ -1,4 +1,4 @@
-package com.vvs.ecommerce.kafka;
+package com.vvs.ecommerce.notification;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

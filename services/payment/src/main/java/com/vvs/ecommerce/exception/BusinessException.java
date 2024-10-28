@@ -1,4 +1,10 @@
 package com.vvs.ecommerce.exception;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class BusinessException {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class BusinessException extends RuntimeException {
+
+    private final String msg;
 }

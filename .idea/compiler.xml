@@ -11,12 +11,15 @@
         <module name="config-server" />
         <module name="notification" />
         <module name="product" />
+        <module name="order (1) (com.alibou)" />
         <module name="discovery" />
-        <module name="payment" />
         <module name="customer" />
         <module name="order" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="payment" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -26,6 +29,7 @@
       <module name="discovery" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="order" options="-parameters" />
+      <module name="order (1) (com.alibou)" options="-parameters" />
       <module name="payment" options="-parameters" />
       <module name="product" options="-parameters" />
     </option>

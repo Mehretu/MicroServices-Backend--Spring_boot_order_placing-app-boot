@@ -2,14 +2,16 @@ package com.vvs.ecommerce.customer;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/v1/customers")
 @RequiredArgsConstructor
+@Slf4j
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -38,9 +40,10 @@ public class CustomerController {
     }
 
     @GetMapping("/{customer-id}")
-    public ResponseEntity<CustomerResponse> findById(@PathVariable("customer-id") String customerId){
-        return ResponseEntity.ok(customerService.findById(customerId));
-
+    public ResponseEntity<CustomerResponse> findById(
+            @PathVariable("customer-id") String customerId
+    ) {
+        return ResponseEntity.ok(this.customerService.findById(customerId));
     }
 
 

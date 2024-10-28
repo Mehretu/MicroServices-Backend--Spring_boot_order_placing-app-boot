@@ -1,4 +1,4 @@
-package com.vvs.ecommerce.kafka;
+package com.vvs.ecommerce.notification;
 
 import com.vvs.ecommerce.payment.PaymentMethod;
 

@@ -1,3 +1,5 @@
+server:
+  port: 8060
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5436/payment
@@ -6,15 +8,17 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     database: postgresql
-    database-platform: org.hibernate.dialect.postgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
   kafka:
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: paymentConfirmation:com.vvs.ecommerce.kafka.NotificationRequest     #the payload we defined while sending
-server:
-  port: 8060
+        spring.json.type.mapping: paymentConfirmation:com.vvs.ecommerce.notification.NotificationRequest
+application:
+  config:
+    product-url: http://localhost:8222/api/v1/products

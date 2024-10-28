@@ -1,7 +1,7 @@
 package com.vvs.ecommerce.payment;
 
-import com.vvs.ecommerce.kafka.NotificationRequest;
-import com.vvs.ecommerce.kafka.PaymentProducer;
+import com.vvs.ecommerce.notification.NotificationRequest;
+import com.vvs.ecommerce.notification.PaymentProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

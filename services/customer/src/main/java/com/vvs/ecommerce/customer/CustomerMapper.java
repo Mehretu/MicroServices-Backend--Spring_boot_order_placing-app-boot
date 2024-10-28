@@ -19,6 +19,9 @@ public class CustomerMapper {
     }
 
     public CustomerResponse fromCustomer(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
         return new CustomerResponse(
                 customer.getId(),
                 customer.getFirstName(),
